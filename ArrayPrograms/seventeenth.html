@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+    int* merge(int arr1[], int s1, int arr2[], int s2, int arr[], int size){
+        int i = 0, j = 0, k = 0;
+        while (k &lt; size)
+        {
+            if ((arr1[i] &lt; arr2[j] || j == s2) && i != s1){
+                arr[k] = arr1[i];
+                k++;
+                i++;
+            }
+            else{
+                arr[k] = arr2[j];
+                k++;
+                j++;
+            }
+        }
+        return arr;
+    }
+
+    void main(){
+        int arr1[5], arr2[5], arr[10],i;
+        clrscr();
+        printf("Enter First Array\n");
+        for (i = 0; i &lt; 5; i++)
+        {
+            printf("Enter Value of position %d\n", i+1);
+            scanf("%d", &arr1[i]);
+        }
+        printf("Enter Second Array\n");
+        for (i = 0; i &lt; 5; i++)
+        {
+            printf("Enter Value of position %d\n", i+1);
+            scanf("%d", &arr2[i]);
+        }
+
+        merge(arr1, 5, arr2, 5, arr, 10);
+        printf("Printing Merged Array\n");
+        for (i = 0; i &lt; 10; i++)
+        {
+            printf("Value at position %d is %d\n", i+1, arr[i]);
+        }
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+Enter Value of position 1
+12  
+Enter Value of position 2
+18  
+Enter Value of position 3
+25  
+Enter Value of position 4
+26  
+Enter Value of position 5
+30
+Enter Second Array
+Enter Value of 	position 1
+-25
+Enter Value of position 2
+2
+Enter Value of position 3
+5
+Enter Value of position 4
+10
+Enter Value of position 5
+20
+Printing Merged Array
+Value at position 1 is -25   
+Value at position 2 is 2 
+Value at position 3 is 5 
+Value at position 4 is 10
+Value at position 5 is 12
+Value at position 6 is 18
+Value at position 7 is 20
+Value at position 8 is 25
+Value at position 9 is 26
+Value at position 10 is 30   
+</pre>
+</body>
+
+</html>

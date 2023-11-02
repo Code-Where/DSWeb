@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+    void Selectionsort(int arr[], int size){
+        int temp, i, j;
+        for (i = 0; i &lt; size; i++)
+        {
+        for (j = i+1; j &lt; size; j++)
+        {
+            if (arr[i] &gt; arr[j])
+            {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            }
+        }
+
+        }
+    }
+
+    void main(){
+        int arr[5],arr2[5], i;
+        clrscr();
+        printf("Enter Elements of First Array\n");
+        for (i = 0; i &lt; 5; i++)
+        {
+        printf("Enter Value of position %d\n", i+1);
+        scanf("%d", &arr[i]);
+        }
+        printf("Enter Elements of Second Array\n");
+        for (i = 0; i &lt; 5; i++)
+        {
+        printf("Enter Value of position %d\n", i+1);
+        scanf("%d", &arr2[i]);
+        }
+
+        Selectionsort(arr, 5);
+        Selectionsort(arr2, 5);
+
+        for (i = 0; i &lt; 5; i++)
+        {
+        if (arr[i] != arr2[i])
+        {
+            printf("Both arrays are not same");
+            break;
+        }
+        }
+        if (i == 5)
+        {
+        printf("Both arrays are same");
+        }
+
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+Enter Elements of First Array
+Enter Value of position 1
+98
+Enter Value of position 2
+69
+Enter Value of position 3
+35
+Enter Value of position 4
+25
+Enter Value of position 5
+25
+Enter Elements of Second Array
+Enter Value of position 1
+98
+Enter Value of position 2
+69
+Enter Value of position 3
+35
+Enter Value of position 4
+25
+Enter Value of position 5
+25
+Both arrays are same    
+</pre>
+</body>
+
+</html>

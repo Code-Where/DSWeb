@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+
+    void main(){
+        int arr[10], i;
+        clrscr();
+        for (i = 0; i &lt; 10; i++)
+        {
+        printf("Enter Value of position %d\n", i+1);
+        scanf("%d", &arr[i]);
+        }
+        printf("Even Values Are\n");
+        for (i = 0; i &lt; 10; i++)
+        {
+        if (arr[i] %2 == 0)
+            printf("%d\n", arr[i]);
+        }
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+Enter Value of position 1
+59
+Enter Value of position 2                                                       
+69                                                                              
+Enter Value of position 3                                                       
+25                                                                              
+Enter Value of position 4                                                       
+24                                                                              
+Enter Value of position 5                                                       
+36
+Enter Value of position 6
+69
+Enter Value of position 7
+69
+Enter Value of position 8
+635
+Enter Value of position 9
+36
+Enter Value of position 10
+96
+Even Values Are
+24
+36
+36
+96
+
+
+</pre>
+</body>
+
+</html>

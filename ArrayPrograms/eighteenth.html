@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+
+    void main(){
+        int arr[10], i;
+        clrscr();
+        for (i = 0; i &lt; 10; i++)
+        {
+        printf("Enter Value of position %d\n", i+1);
+        scanf("%d", &arr[i]);
+        }
+
+        for (i = 1; i &lt; 9; i++)
+        {
+        if(arr[i] &lt; arr[i-1] && arr[i] &lt; arr[i+1])
+            printf("%d is local minima\n", arr[i]);
+        }
+
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+Enter Value of position 1
+598
+Enter Value of position 2
+69
+Enter Value of position 3
+8
+Enter Value of position 4
+58
+Enter Value of position 5
+586
+Enter Value of position 6
+658
+Enter Value of position 7
+5
+Enter Value of position 8
+69
+Enter Value of position 9
+89
+Enter Value of position 10
+-9
+8 is local minima
+5 is local minima     
+</pre>
+</body>
+
+</html>
