@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+    long strVowels(char str[]){
+        long count = 0, i;
+        for (i = 0; str[i] != '\0'; i++)
+        {
+            if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+                count++;
+        }
+        
+        return count;
+    }
+    
+    void main(){
+        char str[30];
+        clrscr();
+        printf("Enter String\n");
+        gets(str);
+        printf("Total Vowels in given string is %d", strVowels(str));
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+    Enter String
+    abhishek                                                                        
+    Total Vowels in given string is 3   
+</pre>
+</body>
+
+</html>

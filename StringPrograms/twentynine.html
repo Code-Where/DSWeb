@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+    int strtochar(char str[], int arr[]){
+        int i;
+        for (i = 0; str[i]; i++)
+        {
+            arr[i] = str[i];
+        }
+        return i-1;
+    }
+    
+    void main(){
+        char str[30];
+        int charr[30];
+        int i, upper;
+        clrscr();
+        printf("Enter String\n");
+        gets(str);
+        upper = strtochar(str, charr);
+        for (i = 0; i &lt;= upper; i++)
+        {
+            printf("%d\n", charr[i]);
+        }
+        
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+    Enter String
+    HeLLO World                                                                     
+    72                                                                              
+    101                                                                             
+    76
+    76                                                                              
+    79                                                                              
+    32                                                                              
+    87                                                                              
+    111                                                                             
+    114                                                                             
+    108                                                                             
+    100                                     
+</pre>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;conio.h&gt;
+    #include&lt;dos.h&gt;
+    char* strToggle(char str[]){
+        int i;
+        for (i = 0; str[i] != '\0'; i++)
+        {
+            if (str[i] &gt;= 'A' && str[i] &lt;= 'Z')
+                str[i] += 32;
+            else if(str[i] &gt;= 'a' && str[i] &lt;= 'z')
+                str[i] -= 32;
+        }
+        return str;
+    }
+    
+    void main(){
+        char str[30];
+        clrscr();
+        printf("Enter a String\n");
+        gets(str);
+        printf("String Before Togglecase: %s\n", str);
+        strToggle(str);
+        printf("String After Togglecase: %s\n", str);
+        delay(5000);
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+    Enter a String
+    aHelo Helos                                                                     
+    String Before Togglecase: aHelo Helos                                           
+    String After Togglecase: AhELO hELOS 
+</pre>
+</body>
+
+</html>
