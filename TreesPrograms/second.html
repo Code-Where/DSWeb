@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include&lt;stdio.h&gt;
+    #include&lt;stdlib.h&gt;
+    
+    struct treeNode
+    {
+        int data;
+        struct treeNode *left;
+        struct treeNode *right;
+    };
+    typedef struct treeNode TreeNode;
+    struct queueNode
+    {
+        TreeNode *data;
+        struct queueNode *next;
+    };
+    typedef struct queueNode QueueNode;
+    
+    TreeNode* newNode(int val) {
+        TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
+        node-&gt;data = val;
+        node-&gt;left = NULL;
+        node-&gt;right = NULL;
+        return node;
+    }
+    
+    int enqueue(QueueNode **rear, QueueNode **front, TreeNode *data)
+    {
+        QueueNode *nn;
+        nn = (QueueNode *)malloc(sizeof(QueueNode));
+        if (nn == NULL)
+        {
+            return 0;
+        }
+        nn-&gt;data = data;
+        nn-&gt;next = NULL;
+        if (*front == NULL)
+        {
+            *front = nn;
+        }
+        else
+        {
+            (*rear)-&gt;next = nn;
+        }
+        *rear = nn;
+        return 1;
+    }
+    
+    TreeNode* dequeue(QueueNode **rear, QueueNode **front)
+    {
+        QueueNode *temp;
+        if ((*front) == NULL)
+        {
+            return NULL;
+        }
+        TreeNode *data = (*front)-&gt;data;
+        temp = (*front);
+        if ((*front) == (*rear))
+        {
+            *front = *rear = NULL;
+        }
+        else{
+            (*front) = temp -&gt; next;
+        }
+        free(temp);
+        return data;
+    }
+    
+    void levelOrderTraversal(TreeNode* root) {
+        QueueNode *front, *rear;
+        front = rear = NULL;
+    
+        if (root == NULL)
+            return;
+    
+        enqueue(&rear, &front, root);
+    
+        while (front != NULL) {
+            TreeNode* node = dequeue(&rear, &front);
+            printf("%d ", node-&gt;data);
+    
+            if (node-&gt;left != NULL)
+                enqueue(&rear, &front, node-&gt;left);
+            if (node-&gt;right != NULL)
+                enqueue(&rear, &front, node-&gt;right);
+        }
+    }
+    
+    int main(){
+        TreeNode* root = newNode(1);
+        root-&gt;left = newNode(2);
+        root-&gt;right = newNode(3);
+        root-&gt;left-&gt;left = newNode(4);
+        root-&gt;left-&gt;right = newNode(5);
+        root-&gt;right-&gt;left = newNode(6);
+        root-&gt;right-&gt;right = newNode(7);
+    
+        printf("Level Order Traversal: ");
+        levelOrderTraversal(root);
+        return 0;
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+    Level Order Traversal: 1 2 3 4 5 6 7 
+</pre>
+</body>
+
+</html>

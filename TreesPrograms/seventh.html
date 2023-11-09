@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/programView.css">
+</head>
+
+<body>
+    
+<pre><code>
+    #include &lt;stdio.h&gt;
+    #include &lt;conio.h&gt;
+    #define MAX 30
+    int tree[MAX];
+    int size = 0;
+    
+    int insert(int val)
+    {
+        if (size == MAX)
+        {
+            printf("Tree is Full!");
+            return 0;
+        }
+        if (size == 0)
+        {
+            tree[0] = val;
+            size++;
+            return 1;
+        }
+        int i = 0;
+        while (i &lt; MAX && tree[i] != -1)
+        {
+            if (val &lt; tree[i])
+            {
+                i = 2 * i + 1;
+            }
+            else if (val &gt; tree[i])
+            {
+                i = 2 * i + 2;
+            }
+            else
+            {
+                printf("Duplicate is not allowed!");
+                return 0;
+            }
+        }
+        if (i &lt; MAX)
+        {
+            tree[i] = val;
+            size++;
+            return 1;
+        }
+        else
+        {
+            printf("Tree is Full!");
+            return 0;
+        }
+    }
+    
+    int delete(int val)
+    {
+        if (size == 0)
+        {
+            printf("Tree is Empty!");
+            return -1;
+        }
+        if (size == 1)
+        {
+            size = 0;
+            return 0;
+        }
+        int i = 0;
+        // getting correct index.
+        while (i &lt; MAX && tree[i] != -1)
+        {
+            if (tree[i] == val)
+            {
+                break;
+            }
+            if (val &lt; tree[i])
+            {
+                i = 2 * i + 1;
+            }
+            else if (val &gt; tree[i])
+            {
+                i = 2 * i + 2;
+            }
+        }
+        if (i &lt; MAX && tree[i] != -1)
+        {
+            size--;
+            int val = tree[i];
+            tree[i] = -1;
+            return i;
+        }
+        else
+        {
+            printf("Value not found!");
+            return -1;
+        }
+    }
+    
+    int search(int val)
+    {
+        if (size == 0)
+        {
+            printf("Tree is Empty!");
+            return -1;
+        }
+        int i = 0;
+        // getting correct index.
+        while (i &lt; MAX && tree[i] != -1)
+        {
+            if (tree[i] == val)
+            {
+                break;
+            }
+            if (val &lt; tree[i])
+            {
+                i = 2 * i + 1;
+            }
+            else if (val &gt; tree[i])
+            {
+                i = 2 * i + 2;
+            }
+        }
+        if (i &lt; MAX && tree[i] != -1)
+        {
+            return i;
+        }
+        else
+        {
+            printf("Value not found!");
+            return -1;
+        }
+    }
+    
+    void preOrder(int index)
+    {
+        if (index &gt;= MAX || index &lt; 0)
+        {
+            return;
+        }
+        printf("%d ", tree[index]);
+        int leftIndx = 2 * index + 1;
+        int rightIndx = 2 * index + 2;
+        if (tree[leftIndx] != -1)
+            preOrder(leftIndx);
+        if (tree[rightIndx] != -1)
+            preOrder(rightIndx);
+    }
+    
+    void inOrder(int index)
+    {
+        if (index &gt;= MAX || index &lt; 0)
+        {
+            return;
+        }
+        int leftIndx = 2 * index + 1;
+        int rightIndx = 2 * index + 2;
+        if (tree[leftIndx] != -1)
+            inOrder(leftIndx);
+        printf("%d ", tree[index]);
+        if (tree[rightIndx] != -1)
+            inOrder(rightIndx);
+    }
+    
+    void postOrder(int index)
+    {
+        if (index &gt;= MAX || index &lt; 0)
+        {
+            return;
+        }
+        int leftIndx = 2 * index + 1;
+        int rightIndx = 2 * index + 2;
+        if (tree[leftIndx] != -1)
+            postOrder(leftIndx);
+        if (tree[rightIndx] != -1)
+            postOrder(rightIndx);
+        printf("%d ", tree[index]);
+    }
+    
+    int getMin()
+    {
+        if (size == 0)
+        {
+            return -1;
+        }
+        int i = 0;
+        int prev = -1;
+        while (i &lt; MAX && tree[i] != -1)
+        {
+            prev = i;
+            i = 2 * i + 1;
+        }
+        if (prev &lt; MAX)
+            return tree[prev];
+    }
+    
+    int main()
+    {
+        char ch;
+        int val;
+        for (int i = 0; i &lt; MAX; i++)
+        {
+            tree[i] = -1;
+        }
+        do
+        {
+            printf("Press 1: Insert\nPress 2: Delete\nPress 3: Search\nPress 4: Traversal\nPress 5: Minimum Element\nPress 6: Exit\n");
+            ch = getche();
+            printf("\n");
+            if (ch == '1')
+            {
+                printf("Enter Value to be inserted in BST\t");
+                scanf("%d", &val);
+                if (insert(val))
+                    printf("%d inserted to BST\n", val);            
+            }
+            else if (ch == '2')
+            {
+                printf("Enter Value to be deleted from BST\t");
+                scanf("%d", &val);
+                if (delete(val) &gt;= 0)
+                    printf("%d deleted from BST\n", val);     
+                else
+                    printf("%d not available in BST\n", val);
+            }
+            else if (ch == '3')
+            {
+                printf("Enter Value to be Searched in BST\t");
+                scanf("%d", &val);
+                if (search(val) &gt;= 0)
+                    printf("%d found in BST\n", val);     
+                else
+                    printf("%d not available in BST\n", val);
+            }
+            else if (ch == '4')
+            {
+                printf("Press 1: PreOrder Traversal\nPress 2: InOrder Traversal\nPress 3: PostOrder Traversal\n");
+                ch = getche();
+                printf("\n");
+                if (ch == '1')
+                    preOrder(0);
+                else if (ch == '2')
+                    inOrder(0);
+                else if (ch == '3')
+                    postOrder(0);
+                else
+                    printf("Invalid Traversal Option\n");
+                printf("\n");
+            }
+            else if (ch == '5')
+            {
+                if (size == 0)
+                    printf("Tree is Empty\n");
+                else
+                    printf("Minimum value of BST is %d\n", getMin());            
+            }
+            else if (ch == '6')
+                printf("Exitting From the Program....\n");
+            else
+                printf("Invalid Option\n");        
+        } while (ch != '6');
+        return 0;
+    }
+        </code>
+</pre>
+<h1>OUTPUT</h1>
+<pre>
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    5
+    Tree is Empty
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    1
+    Enter Value to be inserted in BST       59
+    59 inserted to BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    1
+    Enter Value to be inserted in BST       57
+    57 inserted to BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    4
+    Press 1: PreOrder Traversal
+    Press 2: InOrder Traversal
+    Press 3: PostOrder Traversal
+    2
+    57 59
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    5
+    Minimum value of BST is 57
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    2
+    Enter Value to be deleted from BST      5
+    Value not found!5 not available in BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    2
+    Enter Value to be deleted from BST      57
+    57 deleted from BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    3
+    Enter Value to be Searched in BST       57
+    Value not found!57 not available in BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    2
+    Enter Value to be deleted from BST      59
+    59 deleted from BST
+    Press 1: Insert
+    Press 2: Delete
+    Press 3: Search
+    Press 4: Traversal
+    Press 5: Minimum Element
+    Press 6: Exit
+    6
+    Exitting From the Program....    
+</pre>
+</body>
+
+</html>
